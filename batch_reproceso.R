@@ -15,6 +15,8 @@ library(properties)
 library(log4r)
 library(lubridate)
 library(rjson)
+library(rvest)
+library(readxl)
 
 source('funciones_genericas.R')
 #Crea archivo log

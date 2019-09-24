@@ -1,7 +1,7 @@
 # =================================================================================================
 #             PROCESO DE EXTRACCION DE DATOS DE UNA PAGINA HTML DE LA PAGINA DE LA SB
 # =================================================================================================
-
+# install.packages('rvest')
 library(lubridate)
 library(rvest)
 # Lee archivo de propiedades con los parametros de conexion a MongoDB

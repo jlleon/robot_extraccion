@@ -15,6 +15,8 @@ library(properties)
 library(log4r)
 library(lubridate)
 library(rjson)
+library(rvest)
+library(readxl)
 
 source('funciones_genericas.R')
 #Crea archivo log
@@ -36,7 +38,7 @@ main <- function() {
 
   # Obtiene fecha actual de procesamiento
   # fechaActual = today()
-  fechaActual <- ymd('20190201')
+  fechaActual <- ymd('20190901')
   # Esta funcion por cada origen ejecuta el proceso de batch
   f <- function(origenes, salida) {
     # Obtiene el documento de origen, la configuracion del origen y el nombre de proceso

@@ -26,10 +26,10 @@ ejecutar_proceso <- function(fechaConsulta, configuracion, instituciones) {
   # Selecciona los enlaces que contienen la palabra Boletin_financiero
   # Selecciona los enlaces que corresponden a la fecha de consulta
   # Selecciona el enlace que corresponde al segmento 1
-  boletines <- enlaces[grep("Boletin_financiero", enlaces)]
-  boletinesAnioActual <- boletines[grep(anio, boletines)]
-  boletinesMesActual <- boletinesAnioActual[grep(mes, boletinesAnioActual)]
-  linkSegmento <- boletinesMesActual[grep(configuracion["segmento"], boletinesMesActual)]
+  boletines <- enlaces[grep("Boletin_financiero", enlaces, ignore.case = TRUE)]
+  boletinesAnioActual <- boletines[grep(anio, boletines, ignore.case = TRUE)]
+  boletinesMesActual <- boletinesAnioActual[grep(mes, boletinesAnioActual, ignore.case = TRUE)]
+  linkSegmento <- boletinesMesActual[grep(configuracion["segmento"], boletinesMesActual, ignore.case = TRUE)]
   
   info(logger, paste("Pagina web del archivo:", url))
   
@@ -76,12 +76,8 @@ ejecutar_proceso <- function(fechaConsulta, configuracion, instituciones) {
         balance$insert(newTabla)
         info(logger, paste("Registros almacenados:", nrow(tabla) - 1))
       } else {
-        if (institucion$codigo) {
           warn(logger, paste("La institucion ", tabla[1, column], ", existe en el archivo pero no en la base de datos."))
-          institucionesNoProcesadas <- c(institucionesNoProcesadas, institucion$codigo)  
-        } else {
-          info(logger, paste("La institucion ", tabla[1, column], ", esta deshabilitada."))
-        }
+          institucionesNoProcesadas <- c(institucionesNoProcesadas, institucion$codigo)
       }
     }
   } else {
